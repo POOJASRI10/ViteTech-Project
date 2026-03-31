@@ -65,7 +65,7 @@ ocr-system/
 
 ## File Descriptions
 
-### 📖 Documentation Files
+###  Documentation Files
 
 | File | Purpose | Read When |
 |------|---------|-----------|
@@ -75,14 +75,14 @@ ocr-system/
 | **DEPLOYMENT.md** | Cloud deployment architecture & planning | Going to production |
 | **PROJECT_SUMMARY.md** | Completion summary & validation checklist | Final review |
 
-### 🔧 Configuration Files
+###  Configuration Files
 
 | File | Purpose |
 |------|---------|
 | **requirements.txt** | Python package dependencies |
 | **.gitignore** | Git ignore patterns |
 
-### 🐍 Python Scripts
+###  Python Scripts
 
 #### Step 1: Data Audit (01_data_audit.py)
 **Purpose:** Understand dataset before training
@@ -151,7 +151,7 @@ Classes:
 - DataLogger: Log data operations
 ```
 
-### 📊 Data Files (Generated After Running)
+###  Data Files (Generated After Running)
 
 #### Training Data (data/processed/)
 ```json
@@ -188,25 +188,25 @@ training_history.json      (Training metrics)
 
 ## How to Navigate
 
-### 👤 For First-Time Users
+###  For First-Time Users
 1. Read [README.md](README.md) - Understand project
 2. Follow [QUICKSTART.md](QUICKSTART.md) - Setup & run
 3. Check [ARCHITECTURE.md](ARCHITECTURE.md) - Understand design
 4. Run scripts 01-07 in sequence
 
-### 🔬 For Technical Deep-Dive
+###  For Technical Deep-Dive
 1. Study [ARCHITECTURE.md](ARCHITECTURE.md) - Design decisions
 2. Read script source code (01_data_audit.py → 07_llm_correction.py)
 3. Review [utils.py](scripts/utils.py) - Utility functions
 4. Check generated results in results/ directory
 
-### 🚀 For Production Deployment
+###  For Production Deployment
 1. Read [DEPLOYMENT.md](DEPLOYMENT.md) - Architecture
 2. Review [04_finetune.py](scripts/04_finetune.py) - Training setup
 3. Study [05_evaluate.py](scripts/05_evaluate.py) - Evaluation
 4. Plan monitoring & scaling
 
-### 📊 For Results & Analysis
+###  For Results & Analysis
 1. Run all 7 steps
 2. Check results/ directory for outputs
 3. Read generated .txt reports
@@ -354,5 +354,5 @@ Training Time:
 ---
 
 **Total Project Size:** ~2,000 lines code + ~2,000 lines docs + data  
-**Status:** ✅ Complete and Production-Ready  
+**Status:**  Complete and Production-Ready  
 **Next:** Run scripts/01_data_audit.py to get started!

@@ -3,12 +3,12 @@
 ## Project Summary
 
 This is a **complete OCR pipeline** for handwritten text recognition that demonstrates:
-- ✅ Proper data handling and quality auditing
-- ✅ Baseline model evaluation
-- ✅ Iterative fine-tuning with measurable improvements
-- ✅ Detailed error analysis and categorization
-- ✅ LLM-based post-processing for correction
-- ✅ Cloud deployment planning
+- Proper data handling and quality auditing
+- Baseline model evaluation
+- Iterative fine-tuning with measurable improvements
+- Detailed error analysis and categorization
+- LLM-based post-processing for correction
+- Cloud deployment planning
 
 ## What You Get
 
@@ -304,11 +304,11 @@ See [DEPLOYMENT.md](DEPLOYMENT.md) for:
 
 ## When NOT to Use This Approach
 
-- ❌ Digital text extraction → Use PDF parsing
-- ❌ Printed documents at scale → Use document scanning service
-- ❌ Real-time requirements (< 10ms) → Use edge AI
-- ❌ Perfect accuracy needed → Consider hybrid human+AI
-- ❌ Very small dataset (< 100 samples) → Use pre-trained only
+- Digital text extraction → Use PDF parsing
+- Printed documents at scale → Use document scanning service
+- Real-time requirements (< 10ms) → Use edge AI
+- Perfect accuracy needed → Consider hybrid human+AI
+- Very small dataset (< 100 samples) → Use pre-trained only
 
 ## Additional Resources
 
@@ -331,7 +331,3 @@ For issues with:
 ```bash
 python scripts/01_data_audit.py --data_dir data/raw/iam
 ```
-
-**Next:** Follow the 7-step pipeline in "Run the Pipeline" section above.
-
-Good luck! 🚀

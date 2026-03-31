@@ -158,9 +158,9 @@ class DataPreparator:
         leakage_check["no_leakage"] = no_leakage
         
         if not no_leakage:
-            logger.warning("⚠️  Data leakage detected!")
+            logger.warning("[WARNING] Data leakage detected!")
         else:
-            logger.info("✓ No data leakage detected")
+            logger.info("[PASS] No data leakage detected")
         
         return leakage_check
     
@@ -401,7 +401,7 @@ def main():
         f.write(report)
     logger.info(f"Report saved to {report_path}")
     
-    logger.info("✓ Data preparation complete!")
+    logger.info("[DONE] Data preparation complete!")
 
 
 if __name__ == "__main__":

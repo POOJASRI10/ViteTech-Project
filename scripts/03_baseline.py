@@ -20,6 +20,7 @@ from PIL import Image
 from transformers import TrOCRProcessor, VisionEncoderDecoderModel
 import numpy as np
 from tqdm import tqdm
+import pandas as pd
 
 from utils import MetricsCalculator, ErrorAnalyzer, ResultsWriter
 

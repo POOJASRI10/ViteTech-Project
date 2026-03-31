@@ -80,18 +80,18 @@ This is a **production-ready OCR system** that demonstrates end-to-end machine l
 ## Key Design Decisions
 
 ### 1. **Why TrOCR?**
-- ✅ Pre-trained on 600K+ handwritten samples
-- ✅ Vision-encoder architecture (efficient)
-- ✅ Small variant fits in memory (3GB)
-- ✅ State-of-the-art on handwriting tasks
-- ❌ Alternative: CRNN (requires manual architecture), Tesseract (lower accuracy)
+-  Pre-trained on 600K+ handwritten samples
+-  Vision-encoder architecture (efficient)
+-  Small variant fits in memory (3GB)
+-  State-of-the-art on handwriting tasks
+-  Alternative: CRNN (requires manual architecture), Tesseract (lower accuracy)
 
 ### 2. **Why IAM Dataset?**
-- ✅ 13,353 real handwritten text lines (not synthetic)
-- ✅ Diverse writers and handwriting styles
-- ✅ Well-documented, public domain
-- ✅ Standard benchmark for OCR research
-- ❌ Alternative: Synthetic data (less realistic), other datasets (smaller)
+-  13,353 real handwritten text lines (not synthetic)
+-  Diverse writers and handwriting styles
+-  Well-documented, public domain
+-  Standard benchmark for OCR research
+-  Alternative: Synthetic data (less realistic), other datasets (smaller)
 
 ### 3. **Text Normalization Strategy**
 ```
@@ -203,10 +203,10 @@ Epochs: 3
 ```
 
 ### Why Not Use:
-- ❌ SGD (slower convergence than Adam)
-- ❌ Large batch (memory issues, generalization worse)
-- ❌ Complex architectures (TrOCR already optimized)
-- ❌ Data augmentation (pretrained on diverse data)
+-  SGD (slower convergence than Adam)
+-  Large batch (memory issues, generalization worse)
+-  Complex architectures (TrOCR already optimized)
+-  Data augmentation (pretrained on diverse data)
 
 ## Expected Performance
 
@@ -233,17 +233,17 @@ Fine-tuning on domain data provides **significant improvements**:
 ## Limitations & Honest Assessment
 
 ### What Works Well
-✅ Clear, continuous handwriting
-✅ Standard ink on white paper
-✅ Reasonable image resolution (> 200 DPI)
-✅ Single-line text (as in IAM dataset)
+ Clear, continuous handwriting
+ Standard ink on white paper
+ Reasonable image resolution (> 200 DPI)
+ Single-line text (as in IAM dataset)
 
 ### What Struggles
-❌ Very cursive / connected writing (hard to segment)
-❌ Multiple languages / scripts
-❌ Mixed handwriting quality in same document
-❌ Severely degraded / faded text
-❌ Unusual fonts or writing styles
+ Very cursive / connected writing (hard to segment)
+ Multiple languages / scripts
+ Mixed handwriting quality in same document
+ Severely degraded / faded text
+ Unusual fonts or writing styles
 
 ### Common Failure Modes
 1. **Merged words:** Writer's spacing unclear
@@ -317,27 +317,27 @@ Fine-tuning on domain data provides **significant improvements**:
 
 This project demonstrates:
 
-✅ **Data Understanding:**
+ **Data Understanding:**
 - Comprehensive data audit
 - Quality checks and statistics
 - Clear normalization rules
 
-✅ **Model Development:**
+ **Model Development:**
 - Baseline establishment
 - Systematic fine-tuning
 - Reproducible training
 
-✅ **Rigorous Evaluation:**
+ **Rigorous Evaluation:**
 - Multiple metrics (CER, WER, Accuracy)
 - Error categorization and analysis
 - Detailed prediction examples
 
-✅ **Iterative Improvement:**
+ **Iterative Improvement:**
 - Before/after comparison
 - Quantified gains
 - Clear methodology
 
-✅ **Practical Thinking:**
+ **Practical Thinking:**
 - LLM integration ideas
 - Cloud deployment planning
 - Real-world considerations
@@ -350,6 +350,6 @@ This is **not** a research project focused on state-of-the-art accuracy. Instead
 
 ---
 
-**Status:** ✅ Complete and Production-Ready
+**Status:**  Complete and Production-Ready
 
 **Next Step:** Run the pipeline with your data!

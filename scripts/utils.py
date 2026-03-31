@@ -282,6 +282,21 @@ class DataLogger:
             **audit_results,
         }
         
+        # Convert numpy types to native Python types for JSON serialization
+        def convert_types(obj):
+            import numpy as np
+            if isinstance(obj, dict):
+                return {k: convert_types(v) for k, v in obj.items()}
+            elif isinstance(obj, list):
+                return [convert_types(v) for v in obj]
+            elif isinstance(obj, (np.int64, np.int32, np.int16, np.int8)):
+                return int(obj)
+            elif isinstance(obj, (np.float64, np.float32, np.float16)):
+                return float(obj)
+            return obj
+        
+        summary = convert_types(summary)
+        
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
         with open(output_path, 'w', encoding='utf-8') as f:
             json.dump(summary, f, indent=2)

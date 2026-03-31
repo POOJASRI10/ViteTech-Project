@@ -1,0 +1,43 @@
+================================================================================
+BASELINE MODEL EVALUATION - TEST
+================================================================================
+Model: microsoft/trocr-small-handwritten
+Timestamp: 2026-03-31T18:35:01.140706
+
+PERFORMANCE METRICS
+--------------------------------------------------------------------------------
+Character Error Rate (CER): 85.71%
+Word Error Rate (WER): 100.00%
+Samples evaluated: 2
+
+Exact Match Accuracy: 0.00%
+
+ERROR BREAKDOWN
+--------------------------------------------------------------------------------
+Merged Words: 1 (50.0%)
+Split Words: 1 (50.0%)
+Exact Match: 0 (0.0%)
+Missing Characters: 0 (0.0%)
+Extra Characters: 0 (0.0%)
+Substitution: 0 (0.0%)
+Case Error: 0 (0.0%)
+Other: 0 (0.0%)
+
+SAMPLE PREDICTIONS (First 10)
+--------------------------------------------------------------------------------
+
+1. Image: demo-0001
+   Reference: 'recognition'
+   Prediction: 'handwritten recognition'
+   Error Type: split_words
+
+2. Image: demo-0005
+   Reference: 'learning networks'
+   Prediction: 'beepleseringnehovts'
+   Error Type: merged_words
+
+================================================================================
+NEXT STEPS:
+1. Run 04_finetune.py to fine-tune model on training data
+2. Evaluate fine-tuned model
+3. Compare baseline vs fine-tuned performance
