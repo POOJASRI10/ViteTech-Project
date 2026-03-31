@@ -1,0 +1,53 @@
+# Environment
+venv/
+env/
+.venv
+*.egg-info/
+dist/
+build/
+
+# Data (too large)
+data/raw/
+data/processed/
+*.zip
+*.tar.gz
+*.tar
+
+# Models (large checkpoints)
+models/*/
+!models/README.md
+
+# Results & logs
+results/*.json
+results/*.csv
+results/*.pkl
+*.log
+runs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Config
+.env
+config.local.yaml
+
+# Temp files
+temp/
+tmp/
+*.tmp
