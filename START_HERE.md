@@ -410,7 +410,7 @@ This is a **complete, professional OCR system** that shows:
 
 ---
 
-## 📂 Repository Info
+## Repository Info
 
 **Location:** c:\Users\POOJA SHETTY\OneDrive\Desktop\Vitetech\ocr-system
 
@@ -429,8 +429,6 @@ git log
 ```
 
 ---
-
-## 🎓 For Interviewers / Reviewers
 
 This project demonstrates:
 - ML pipeline development

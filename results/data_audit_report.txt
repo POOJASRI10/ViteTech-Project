@@ -1,56 +1,43 @@
 ================================================================================
 DATA AUDIT REPORT - IAM HANDWRITING DATASET
 ================================================================================
-Timestamp: 2026-03-31T18:08:46.779917
+Timestamp: 2026-04-04T20:17:04.387882
 
 DIRECTORY STRUCTURE
 --------------------------------------------------------------------------------
 Data directory exists: True
-Data directory path: data\raw\demo
-Lines directory exists: True
-Metadata file (lines.txt) exists: True
-Number of image files: 8
+Data directory path: data\raw\kaggle_iam\data_subset
+Lines directory exists: False
+Metadata file (lines.txt) exists: False
+Number of image files: 0
 
 METADATA STATUS
 --------------------------------------------------------------------------------
-Metadata file found: True
-Parsing successful: True
-Total lines in file: 8
-Valid samples: 8
+Metadata file found: False
+Parsing successful: False
+Total lines in file: 0
+Valid samples: 0
 Invalid samples: 0
 
 DATA QUALITY CHECKS
 --------------------------------------------------------------------------------
-Total samples analyzed: 8
+Total samples analyzed: 0
 Duplicate image IDs: 0
-Empty text fields: 2
-Duplicate text values: 1
-Text Length - Min: 0, Max: 9, Mean: 4.4
+Empty text fields: 0
+Duplicate text values: 0
 
 TEXT CHARACTERISTICS
 --------------------------------------------------------------------------------
-Unique characters: 16
+Unique characters: 0
 Contains uppercase: False
 Contains punctuation: False
 Contains numbers: False
 Contains special characters: False
-
-Sample texts:
-  1. 'brown fox'
-  2. ''
-  3. 'test'
-  4. 'model'
-  5. ''
-
-Most common characters: [('o', 5), ('t', 4), ('e', 4), ('s', 4), ('r', 2)]
 Texts changed by normalization: 0
 
 IMAGE ANALYSIS
 --------------------------------------------------------------------------------
-Total images: 8
-Image dimensions (pixels):
-  Width - Min: 400, Max: 400, Mean: 400.0
-  Height - Min: 64, Max: 64, Mean: 64.0
+Total images: 0
 
 TEXT NORMALIZATION RULES
 --------------------------------------------------------------------------------

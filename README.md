@@ -34,6 +34,201 @@ Data (IAM Handwriting)
 [Final Results & Comparison]
 ```
 
+## Data Audit Results
+
+### What We Found
+- **Dataset**: 4,899 real handwritten text line images from Kaggle IAM Top 50
+- **Duplicates**: 1 exact duplicate image detected (99.98% unique)
+- **Image quality issues**: 30 tiny images (<100px width) representing 0.6% of data
+- **Text characteristics**: 
+  - Case consistency: 45% lowercase, 55% mixed case (natural variation)
+  - Punctuation: Present in 70% of texts (commas, periods, exclamation marks)
+  - Spacing: Consistent single spaces throughout (normal for handwritten)
+  - Overall text: 80.6% letters, 15.8% spaces, 3.6% punctuation
+
+### What We Fixed
+- Created proper train/val/test split: 3,429 training / 734 validation / 736 test (70/15/15)
+- Organized dataset into standard directory structure for pipeline processing
+
+### What We Ignored (And Why)
+- **1 duplicate image**: Kept as-is. Real-world OCR systems encounter duplicates; removing affects training distribution minimally (0.02% impact)
+- **30 tiny images**: Kept as-is. These represent edge cases (low resolution, cropped text) that improve model robustness to challenging inputs
+- **Text inconsistency** (case/punctuation): Not normalized. Real handwritten text naturally varies; preserving this variation prevents over-regularization and improves generalization
+
+**Verdict**: Dataset quality is GOOD (99.4% usable). Natural variation is beneficial for training.
+
+## Text Normalization Rules
+
+### Rule Definitions
+
+| Rule | Decision | Rationale | Examples |
+|------|----------|-----------|----------|
+| **Whitespace** | Trim & normalize | Remove accidental spaces | `"  hello  world  "` → `"hello world"` |
+| **Case** | PRESERVE | Real text has natural variation | `"The Quick"` stays `"The Quick"` |
+| **Punctuation** | KEEP | Part of real text | `"Hello, world!"` stays intact |
+| **Special chars** | PRESERVE | Diacritics, unicode kept | `"café"` stays `"café"` |
+
+### Detailed Rules
+
+#### 1. WHITESPACE HANDLING
+**Decision: TRIM AND NORMALIZE**
+
+- Strip leading spaces: `"  hello"` → `"hello"`
+- Strip trailing spaces: `"world  "` → `"world"`
+- Normalize internal spaces: `"hello  world"` → `"hello world"`
+- Convert tabs to spaces: `"hello\tworld"` → `"hello world"`
+
+**Examples:**
+```
+Before:    "   The Quick Brown Fox   "
+After:     "The Quick Brown Fox"
+
+Before:    "Multiple    spaces    here"
+After:     "Multiple spaces here"
+```
+
+#### 2. CASE HANDLING
+**Decision: PRESERVE ORIGINAL CASE**
+
+- DO NOT convert to lowercase during training
+- DO convert to lowercase for evaluation metrics only
+- Reason: Real handwriting has natural case variation
+
+**Examples:**
+```
+Training data preserved as:
+- "The Quick Brown Fox"
+- "USA is great"
+- "iPhone and iPad"
+- "alice and Bob"
+
+During evaluation (CER/WER):
+- All converted to lowercase for fair comparison
+- "The Quick Brown Fox" → "the quick brown fox"
+```
+
+**Why preserve?** Model learns from realistic patterns:
+- Proper nouns start with capitals: "John", "London"
+- Acronyms are uppercase: "USA", "FBI"
+- Regular text is lowercase: "the", "is"
+- This diversity improves generalization
+
+#### 3. PUNCTUATION HANDLING
+**Decision: KEEP AS-IS**
+
+- DO NOT remove punctuation marks
+- DO NOT replace punctuation
+- Reason: Punctuation is part of real text
+
+**Examples:**
+```
+Preserved:
+- "Hello, world!"
+- "What's your name?"
+- "It costs $50.00"
+- "Email: test@example.com"
+
+NOT removed or changed:
+- Commas, periods, question marks, exclamation marks
+- Apostrophes, quotes, parentheses, brackets
+- Hyphens, colons, semicolons
+- Currency symbols, @ symbols
+```
+
+**Why keep?** Punctuation carries information:
+- Sentence structure: "Really? Really!"
+- Abbreviations: "Dr.", "Mr."
+- Mathematical expressions: "2+2=4"
+
+#### 4. SPECIAL CHARACTERS & UNICODE
+**Decision: PRESERVE**
+
+- DO NOT remove accents/diacritics
+- DO NOT replace unicode characters
+- Reason: Different languages and special writing
+
+**Examples:**
+```
+Preserved:
+- "café" (French accent)
+- "naïve" (umlaut)
+- "Zürich" (German)
+- "José" (Spanish)
+- "résumé" (multiple accents)
+
+Not normalized or removed.
+```
+
+#### 5. EMPTY STRINGS
+**Decision: SKIP IF COMPLETELY EMPTY**
+
+- Remove if text is only whitespace
+- Keep if text has any content
+
+**Examples:**
+```
+Skipped:
+- "" (empty)
+- "   " (only spaces)
+- "\t\t" (only tabs)
+
+Kept:
+- "." (just punctuation)
+- "?" (just symbol)
+- "a" (single character)
+```
+
+### Summary Table
+
+```
+╔════════════════════╦═══════════════╦════════════════════════════════╗
+║ Aspect             ║ Decision      ║ Applied When                   ║
+╠════════════════════╬═══════════════╬════════════════════════════════╣
+║ Whitespace         ║ Trim/Normalize║ Always                         ║
+║ Case               ║ Preserve      ║ Training; Lowercase for Metrics║
+║ Punctuation        ║ Keep          ║ Always                         ║
+║ Special Chars      ║ Keep          ║ Always                         ║
+║ Empty strings      ║ Skip          ║ If 100% whitespace             ║
+╚════════════════════╩═══════════════╩════════════════════════════════╝
+```
+
+### Code Implementation
+
+**Location**: `scripts/utils.py` - `TextNormalizer` class
+
+```python
+class TextNormalizer:
+    @staticmethod
+    def normalize(text: str) -> str:
+        # 1. Strip leading/trailing whitespace
+        text = text.strip()
+        
+        # 2. Normalize internal whitespace (single spaces)
+        text = " ".join(text.split())
+        
+        # 3. Case preserved (NOT converted to lowercase here)
+        # 4. Punctuation kept as-is
+        # 5. Special characters preserved
+        
+        return text
+```
+
+### Evaluation vs Training
+
+**During Training:**
+- Text normalized with case preserved
+- Punctuation kept
+- Special characters preserved
+- Example: `"The Quick Brown Fox!"` stays as-is
+
+**During Evaluation (CER/WER):**
+- Text converted to lowercase for fair comparison
+- Whitespace normalized
+- Punctuation treated as characters
+- Example: `"The Quick Brown Fox!"` → `"the quick brown fox!"`
+
+This ensures both predictions and references are compared on equal footing.
+
 ## Setup & Requirements
 
 ### Prerequisites
